@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Interface IHC</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <header class="header">
+        <div class="container-fluid">
+            <div class="d-flex justify-content-between align-items-center py-3">
+                <button class="btn-menu" aria-label="Abrir menu lateral" onclick="abrirMenu()">
+                    ☰
+                </button>
+                <h1 class="marca m-0" onclick="mostrarPagina('home')">🔧 FerramentaFácil</h1>
+                <a href="tel:+5515999999999" class="btn-telefone d-none d-md-block">
+                    📞 (15) 99999-9999
+                </a>
+            </div>
+        </div>
+    </header>
+
+    <nav id="menu-lateral" class="menu-lateral">
+        <button class="btn-fechar" onclick="fecharMenu()" aria-label="Fechar menu">
+            ✕
+        </button>
+        <ul class="menu-lista">
+            <li>
+                <a href="#" onclick="mostrarPagina('home'); fecharMenu();">
+                    🏠 Início
+                </a>
+            </li>
+            <li>
+                <a href="#" onclick="mostrarPagina('catalogo'); fecharMenu();">
+                    📦 Catálogo
+                </a>
+            </li>
+            <li>
+                <a href="#" onclick="mostrarPagina('como-funciona'); fecharMenu();">
+                    ❓ Como Funciona
+                </a>
+            </li>
+            <li>
+                <a href="#" onclick="mostrarPagina('contato'); fecharMenu();">
+                    📞 Contato
+                </a>
+            </li>
+        </ul>
+    </nav>
+    <div id="overlay" class="overlay" onclick="fecharMenu()"></div>
+
+    <a href="https://wa.me/5515999999999?text=Olá!%20Gostaria%20de%20alugar%20uma%20ferramenta" "
+        class="btn-whatsapp"
+        target="_blank"
+        aria-label="Falar no Whatsapp">
+        💬
+    </a>
+    
+
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>   
+<script src="script.js"></script> 
+</body>
+</html>
