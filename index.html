@@ -58,6 +58,350 @@
         aria-label="Falar no Whatsapp">
         💬
     </a>
+
+    <main class="conteudo-principal">
+
+        <section id="pagina-home" class="pagina ativa">
+            <div class="container py-5">
+
+
+                <div class="banner-home text-center mb-5">
+                    <h2 class="display-4 fw-bold mb-3">Alugue Ferramentas Profissionais</h2>
+                    <p class="lead mb-4"> Qualidade, economia e praticidade para seus projetos</p>
+                    <button class="btn btn-custom btn-lg" onclick="mostrarPagina('catalogo')">Ver Catálogo Completo</button>
+                </div>
+
+                <h3 class="text-center mb-4 fw-bold">Categorias</h3>
+                <div class="row g-4 mb-5">
+
+                    
+                    <div class="col-12 col-md-4">
+                        <div class="card-categoria" onclick="mostrarPagina('catalogo')">
+                            <div class="card-categoria-icone">🔩</div>
+                            <h4>Serras</h4>
+                            <p>Mármore, circular e tico-tico</p>
+                        </div>
+                    </div>
+
+                    <div class="col-12 col-md-4">
+                        <div class="card-categoria" onclick="mostrarPagina('catalogo')">
+                            <div class="card-categoria-icone">🔩</div>
+                            <h4>Parafusadeiras</h4>
+                            <p>A bateria e com fio</p>
+                        </div>
+                    </div>
+
+                    <div class="col-12 col-md-4">
+                        <div class="card-categoria" onclick="mostrarPagina('catalogo')">
+                            <div class="card-categoria-icone">🔩</div>
+                            <h4>Furadeiras</h4>
+                            <p>Profissionais e de Impacto</p>
+                        </div>
+                    </div>
+
+
+                <h3 class="text-center mb-4 fw-bold">Produtos em Destaque</h3>
+                <div class="row g-4">
+                    <div class="col-12 col0md-6 col-lg-4">
+                        <div class="card h-100 card-produto">
+                            <img src="https://img.lojadomecanico.com.br/IMAGENS/21/221/419344/1738603903490.JPG"
+                            class="card-img-top"
+                            alt="Furadeira profissional amarela Dewalt">
+
+                            <span class="badge-disponivel">✓ Disponivel</span>
+
+                            <div class="card-body">
+                                <h5 class="card-title">Furadeira Profissional Dewalt</h5>
+                                <p class="card-text">Alta potência 850W. Ideal para concreto e alvenaria.</p>
+                                
+                                <div class="preco">R$ 45,00 <span>/dia</span></div>
+
+                                <button class="btn btn-custom w-100 mt-3" onclick="mostrarPagina('detalhes', 1)">Ver Detalhes</button>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="col-12 col0md-6 col-lg-4">
+                        <div class="card h-100 card-produto">
+                            <img src="https://lojawap.vtexassets.com/arquivos/ids/176102/parafusadeira-e-furadeira-de-impacto--wap-k21-id02_03.jpg?v=638793658462170000"
+                            class="card-img-top"
+                            alt="Parafusadeira Profissional amarela">
+
+                            <span class="badge-disponivel">✓ Disponivel</span>
+
+                            <div class="card-body">
+                                <h5 class="card-title">Parafusadeira de Impacto</h5>
+                                <p class="card-text">Bateria 20V, 2 baterias incluídas. Maleta completa.</p>
+                                
+                                <div class="preco">R$ 40,00 <span>/dia</span></div>
+
+                                <button class="btn btn-custom w-100 mt-3" onclick="mostrarPagina('detalhes', 1)">Ver Detalhes</button>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="col-12 col0md-6 col-lg-4">
+                        <div class="card h-100 card-produto">
+                            <img src="https://img.lojadomecanico.com.br/IMAGENS/21/224/104991/1728312709281.JPG"
+                            class="card-img-top"
+                            alt="Serra Mármore Bosch">
+
+                            <span class="badge-alugado">✕ Alugado</span>
+
+                            <div class="card-body">
+                                <h5 class="card-title">Serra Mármore Bosch</h5>
+                                <p class="card-text">1400W, disco 110mm. Para cortes precisos.</p>
+                                
+                                <div class="preco">R$ 50,00 <span>/dia</span></div>
+
+                                <button class="btn btn-custom w-100 mt-3" disabled>Indisponivel</button>
+                            </div>
+                        </div>
+                    </div>
+                    
+                </div>
+            </div>
+        </section>
+
+        <section id="pagina-catalogo" class="pagina">
+            <div class="container py-5">
+                <h2 class="mb-4 fw-bold">Catálogo Completo</h2>
+
+                <div class="row mb-4">
+                    <div class="col-12 col-md-6 col-lg-4 mb-3">
+                        <label for="filtro-categoria" class="form-label fw-bold">Categoria:</label>
+                        <select id="filtro-categoria" class="form-select form-select-lg">
+                            <option value="furadeira">Furadeiras</option>
+                            <option value="serra">Serras</option>
+                            <option value="parafusadeira">Parafusadeiras</option>
+                        </select>
+                    </div>
+
+                    <div class="col-12 col-md-6 col-lg-4 mb-3">
+                        <label for="filtro-categoria" class="form-label fw-bold">Disponibilidade:</label>
+                        <select id="filtro-categoria" class="form-select form-select-lg">
+                            <option value="">Todas</option>
+                            <option value="disponivel">Disponivel</option>
+                            <option value="alugado">Alugado</option>
+                        </select>
+                    </div>
+                </div>
+                
+                <div class="row g-4" id="lista-produtos"></div>
+            </div>
+        </section>
+
+        <section id="pagina-detalhes" class="pagina">
+            <div class="container py-5">
+                <button class="btn btn-outline-secondary mb-4" onclick="mostrarPagina('catalogo')">
+                    ← Voltar ao Catálogo
+                </button>
+
+                <div class="row">
+                    <div class="col-12 col-lg-6 mb-4">
+                        <img id="detalhe-imagem" src="" alt="" class="img-fluid rounded shadow">
+                    </div>
+                </div>
+                <div class="col-12 col-lg-6">
+                    <span id="detalhe-badge" class="badge-disponivel mb-3">✓ Disponível</span>
+                    <h2 id="detalhe-titulo" class="preco-grande mb-4"></h2>
+                    <div id="detalhe-preco" class="preco-grande mb-4"></div>
+                    <p id="detalhe-descricao" class="mb-4"></p>
+
+                    <h4 class="fw-bold mb-3">Especificações Técnicas:</h4>
+                    <ul id="detalhe-specs" class="list-unstyled specs-list mb-4"></ul>
+
+                    <button id="detalhe-btn-alugar" class="btn btn-custom btn-lg w-100 mb-3">
+                        Alugar Agora
+                    </button>
+
+                    <a href="https://wa.me/5515999999999?text=Olá!%20Gostaria%20de%20alugar" 
+                         class="btn btn-success btn-lg w-100" 
+                        target="_blank">
+                        💬 Falar no WhatsApp
+                    </a>
+                </div>
+            </div>
+
+            </div>
+        </section>
+
+        <section id="pagina-como-funciona" class="pagina">
+            <div class="container py-5">
+                <h2 class="text-center mb-5 fw-bold">Como Funciona o Aluguel</h2>
+            
+                <div class="row g-4">
+
+                    <div class="col-12 col-md-6 col-lg-3">
+                        <div class="card-passo">
+                            <div class="passo-numero">1</div>
+                            <h4>Escolha a Ferramenta</h4>
+                            <p>Navegue pelo catálogo e escolha a ferramenta ideal para seu projeto</p>
+                        </div>
+                    </div>
+
+                    <div class="col-12 col-md-6 col-lg-3">
+                        <div class="card-passo">
+                            <div class="passo-numero">2</div>
+                            <h4>Entre em contato</h4>
+                            <p>Fale conosco por WhatsApp ou telefone para reservar</p>
+                        </div>
+                    </div>
+                    
+                    <div class="col-12 col-md-6 col-lg-3">
+                        <div class="card-passo">
+                            <div class="passo-numero">3</div>
+                            <h4>Retire ou receba</h4>
+                            <p>Retire na loja ou receba em casa (consulte disponibilidade)</p>
+                        </div>
+                    </div>
+
+                    <div class="col-12 col-md-6 col-lg-3">
+                        <div class="card-passo">
+                            <div class="passo-numero">4</div>
+                            <h4>Devolva</h4>
+                            <p>Após o uso, devolva a ferramenta limpa e em bom estado</p>
+                        </div>
+                    </div>
+
+                </div>
+
+                <div class="mt-5">
+                    <h3 class="fw-bold mb-3">Informações Importantes:</h3>
+                    <div class="card p-4">
+                        <ul class="info-list">
+                            <li><strong>Documento necessário:</strong>RG, CPF e comprovante de residência</li>
+                            <li><strong>Caução:</strong>Valor varia conforme a ferramenta</li>
+                            <li><strong>Horário de funcionamento:</strong>Segunda a Sexta: 8h às 18h | Sábado: 8h às 12h</li>
+                            <li><strong>Prazo mínimo:</strong>1 dia (diária completa)</li>
+                            <li><strong>Atraso:</strong>Cobrada diária adicional</li>
+                            <li><strong>Manutenção:</strong>Todas as ferramentas são revisadas antes de cada locação</li>
+                        </ul>
+                    </div>
+                </div>
+            
+            </div>
+        </section>
+
+
+        <section id="pagina-contato" class="pagina">
+            <div class="container py-5">
+
+                <h2 class="text-center mb-5 fw-bold">Entre em Contato</h2>
+
+                <div class="row g-4">
+
+                    <div class="col-12 col-lg-6">
+
+                        <div class="card-contato mb-4">
+                            <div class="icone-contato">💬</div>
+                            <h4>WhatsApp</h4>
+                            <p class="mb-3">(15) 99999-9999</p>
+                            <a href="https://wa.me/5515999999999" class="btn btn-success w-100" target="_blank">
+                                Iniciar Conversa
+                            </a>
+                        </div>
+
+                        <div class="card-contato mb-4">
+                            <div class="icone-contato">📞</div>
+                            <h4>Telefone</h4>
+                            <p class="mb-3">(15) 3333-3333</p>
+                            <a href="tel:+551533333333" class="btn btn-custom w-100" >
+                                Ligar Agora
+                            </a>
+                        </div>
+
+                        <div class="card-contato mb-4">
+                            <div class="icone-contato">📍</div>
+                            <h4>Endereço</h4>
+                            <p>Rua das Ferramentas <br>
+                            Centro - Bertioga/SP <br>
+                            CEP: 180000-000</p>    
+                        </div>
+
+                        <div class="card-contato">
+                            <div class="icone-contato">🕐</div>
+                            <h4>Horario de Funcionamento</h4>
+                            <p><strong>Segunda a Sexta:</strong> 8h às 18h
+                            <strong>Sábado:</strong> 8h às 12h
+                            <strong>Domingo:</strong>Fechado</p>
+                        </div>
+
+                    </div>
+
+                    <div class="col-12 col-lg-6">
+                        <div class="card p-4">
+                            <h4 class="mb-4 fw-bold">Envie uma Mensagem</h4>
+
+                            <form id="form-contato">
+                                <div class="mb-3">
+                                    <label for="nome" class="form-label fw-bold">Nome Completo:</label>
+                                    <input type="text" class="form-control form[-lg" id="nome" required>
+                                </div>
+
+                                <div class="mb-3">
+                                    <label for="telefone" class="form-label fw-bold">Telefone:</label>
+                                    <input type="tel" class="form-control form-select-lg" id="telefone" required>
+                                </div>
+
+                                <div class="mb-3">
+                                    <label for="email" class="form-label fw-bold">E-mail:</label>
+                                    <input type="email" class="form-control form-select-lg" id="email" required>
+                                </div>
+
+                                <div class="mb-3">
+                                    <label for="mensagem" class="form-label fw-bold">Mensagem::</label>
+                                    <textarea class="form-control form-control-lg" id="mensagem" rows="5" required></textarea>
+                                </div>
+
+                                <button type="submit" class="btn btn-custombtn-lg w-100">
+                                    Enviar Mensagem
+                                </button>
+                            </form>
+
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <footer class="footer">
+        <div class="container py-4">
+            <div class="row">
+
+
+                <div class="col-12 col-md-4 mb-3">
+                    <h5 class="fw-bold mb-3">FerramentaFácil</h5>
+                    <p>Aluguel de ferramentas profissionais com qualidade e segurança.</p>
+                </div>
+
+                <div class="col-12 col-md-4 mb-3">
+                    <h5 class="fw-bold mb-3">Links Rápidos</h5>
+                    <ul class="list-unstyled">''
+                        <li><a href="#" onclick="mostrarPagina('home')">Inicio</a></li>
+                        <li><a href="#" onclick="mostrarPagina('catalogo')">Catálogo</a></li>
+                        <li><a href="#" onclick="mostrarPagina('como-funciona')">Como Funciona</a></li>
+                        <li><a href="#" onclick="mostrarPagina('contato')">Contato</a></li>
+                    </ul>
+                </div>
+
+                <div class="col-12 col-md-4 mb-3">
+                    <h5 class="fw-bold mb-3">Contato</h5>
+                    <p>📞 (15) 99999-9999<br>
+                        📧 contato@ferramentafacil.com.br<br>
+                        📍 Sorocaba - SP</p>
+                </div>
+            </div>
+
+            <div class="text-center pt-3 border-top">
+                <p class="m-0"> &copy; 2025 FerramentaFácil. Todos os direitos reservados.</p>
+            </div>
+        </div>
+    </footer>
+
+
     
 
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>   
