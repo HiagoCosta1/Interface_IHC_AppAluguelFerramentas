@@ -458,4 +458,47 @@ body {
     .marca {
         font-size: 20px;
     }
+    .btn-menu {
+        font-size: 24px;
+    }
+    .banner-home { 
+        padding: 40px 20px;
+    }
+
+    .preco {
+        font-size: 24px;
+    }
+    .preco-grande {
+        font-size: 32px;
+    }
+}
+
+@media (max-width: 576px){
+    .menu-lateral {
+        width: 200px;
+    }
+    .btn-whatsapp{
+        width: 50px;
+        height: 50px;
+        font-size: 24px;
+        bottom: 15px;
+        right: 15px;
+    }
+
+    .banner-home h2 {
+        font-size: 28px;
+    }
+
+    .card-categoria-icone {
+        font-size: 40px;
+    }
+
+    .card-produto .card-img-top {
+        height: 200px;
+    }
+
+    .btn-custom, .btn-telefone {
+        width: 100%;
+        margin-bottom: 10px;
+    }
 }
