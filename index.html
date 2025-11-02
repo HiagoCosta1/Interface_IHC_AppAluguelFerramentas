@@ -3,22 +3,60 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Interface IHC</title>
+    <title>FerramentaFácil - Aluguel de Ferramentas</title>
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
     <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;700&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="style.css">
 </head>
 <body>
+    
     <header class="header">
         <div class="container-fluid">
             <div class="d-flex justify-content-between align-items-center py-3">
+                
                 <button class="btn-menu" aria-label="Abrir menu lateral" onclick="abrirMenu()">
                     ☰
                 </button>
-                <h1 class="marca m-0" onclick="mostrarPagina('home')">🔧 FerramentaFácil</h1>
-                <a href="tel:+5515999999999" class="btn-telefone d-none d-md-block">
-                    📞 (15) 99999-9999
-                </a>
+                
+                <h1 class="marca m-0" onclick="mostrarPagina('home')">
+                    🔧 FerramentaFácil
+                </h1>
+                
+                <div class="d-flex align-items-center gap-2">
+                    
+                    <div class="busca-container d-none d-md-block">
+                        <input type="search" id="busca-input" class="form-control" 
+                               placeholder="🔍 Buscar ferramentas...">
+                    </div>
+                    
+                    <div class="controles-acessibilidade d-none d-lg-flex gap-1">
+                        <button class="btn-acessibilidade" onclick="diminuirFonte()" 
+                                aria-label="Diminuir fonte" title="Diminuir fonte">
+                            A-
+                        </button>
+                        <button class="btn-acessibilidade" onclick="aumentarFonte()" 
+                                aria-label="Aumentar fonte" title="Aumentar fonte">
+                            A+
+                        </button>
+                        <button class="btn-acessibilidade" onclick="toggleAltoContraste()" 
+                                aria-label="Alto contraste" title="Alto contraste">
+                            👁️
+                        </button>
+                    </div>
+                    
+                    <button class="btn-carrinho" onclick="mostrarPagina('carrinho')" 
+                            aria-label="Ver carrinho">
+                        🛒
+                        <span class="badge-carrinho" id="badge-carrinho">0</span>
+                    </button>
+                    
+                    </div>
+                
+            </div>
+            
+            <div class="d-md-none mt-2">
+                <input type="search" id="busca-input-mobile" class="form-control" 
+                       placeholder="🔍 Buscar ferramentas...">
             </div>
         </div>
     </header>
@@ -28,34 +66,20 @@
             ✕
         </button>
         <ul class="menu-lista">
-            <li>
-                <a href="#" onclick="mostrarPagina('home'); fecharMenu();">
-                    🏠 Início
-                </a>
-            </li>
-            <li>
-                <a href="#" onclick="mostrarPagina('catalogo'); fecharMenu();">
-                    📦 Catálogo
-                </a>
-            </li>
-            <li>
-                <a href="#" onclick="mostrarPagina('como-funciona'); fecharMenu();">
-                    ❓ Como Funciona
-                </a>
-            </li>
-            <li>
-                <a href="#" onclick="mostrarPagina('contato'); fecharMenu();">
-                    📞 Contato
-                </a>
-            </li>
+            <li><a href="#" onclick="mostrarPagina('home'); fecharMenu();">🏠 Início</a></li>
+            <li><a href="#" onclick="mostrarPagina('catalogo'); fecharMenu();">📦 Catálogo</a></li>
+            <li><a href="#" onclick="mostrarPagina('carrinho'); fecharMenu();">🛒 Carrinho</a></li>
+            <li><a href="#" onclick="mostrarPagina('como-funciona'); fecharMenu();">❓ Como Funciona</a></li>
+            <li><a href="#" onclick="mostrarPagina('contato'); fecharMenu();">📞 Contato</a></li>
+            <li class="menu-divider"></li>
+            <li><a href="#" onclick="toggleAltoContraste(); fecharMenu();">👁️ Alto Contraste</a></li>
         </ul>
     </nav>
+    
     <div id="overlay" class="overlay" onclick="fecharMenu()"></div>
 
     <a href="https://wa.me/5515999999999?text=Olá!%20Gostaria%20de%20alugar%20uma%20ferramenta" 
-        class="btn-whatsapp"
-        target="_blank"
-        aria-label="Falar no Whatsapp">
+       class="btn-whatsapp" target="_blank" aria-label="Falar no WhatsApp">
         💬
     </a>
 
@@ -63,112 +87,54 @@
 
         <section id="pagina-home" class="pagina ativa">
             <div class="container py-5">
-
-
+                
                 <div class="banner-home text-center mb-5">
                     <h2 class="display-4 fw-bold mb-3">Alugue Ferramentas Profissionais</h2>
-                    <p class="lead mb-4"> Qualidade, economia e praticidade para seus projetos</p>
-                    <button class="btn btn-custom btn-lg" onclick="mostrarPagina('catalogo')">Ver Catálogo Completo</button>
+                    <p class="lead mb-4">Qualidade, economia e praticidade para seus projetos</p>
+                    <button class="btn btn-custom btn-lg" onclick="mostrarPagina('catalogo')">
+                        Ver Catálogo Completo
+                    </button>
                 </div>
 
                 <h3 class="text-center mb-4 fw-bold">Categorias</h3>
                 <div class="row g-4 mb-5">
-
-                    
                     <div class="col-12 col-md-4">
-                        <div class="card-categoria" onclick="mostrarPagina('catalogo')">
+                        <div class="card-categoria" onclick="filtrarCategoria('furadeira')">
                             <div class="card-categoria-icone">🔩</div>
+                            <h4>Furadeiras</h4>
+                            <p>Profissionais e de impacto</p>
+                        </div>
+                    </div>
+                    <div class="col-12 col-md-4">
+                        <div class="card-categoria" onclick="filtrarCategoria('serra')">
+                            <div class="card-categoria-icone">⚙️</div>
                             <h4>Serras</h4>
                             <p>Mármore, circular e tico-tico</p>
                         </div>
                     </div>
-
                     <div class="col-12 col-md-4">
-                        <div class="card-categoria" onclick="mostrarPagina('catalogo')">
-                            <div class="card-categoria-icone">🔩</div>
+                        <div class="card-categoria" onclick="filtrarCategoria('parafusadeira')">
+                            <div class="card-categoria-icone">🔧</div>
                             <h4>Parafusadeiras</h4>
                             <p>A bateria e com fio</p>
                         </div>
                     </div>
-
-                    <div class="col-12 col-md-4">
-                        <div class="card-categoria" onclick="mostrarPagina('catalogo')">
-                            <div class="card-categoria-icone">🔩</div>
-                            <h4>Furadeiras</h4>
-                            <p>Profissionais e de Impacto</p>
-                        </div>
-                    </div>
-
+                </div>
 
                 <h3 class="text-center mb-4 fw-bold">Produtos em Destaque</h3>
-                <div class="row g-4">
-                    <div class="col-12 col-md-6 col-lg-4">
-                        <div class="card h-100 card-produto">
-                            <img src="https://img.lojadomecanico.com.br/IMAGENS/21/221/419344/1738603903490.JPG"
-                            class="card-img-top"
-                            alt="Furadeira profissional amarela Dewalt">
-
-                            <span class="badge-disponivel">✓ Disponivel</span>
-
-                            <div class="card-body">
-                                <h5 class="card-title">Furadeira Profissional Dewalt</h5>
-                                <p class="card-text">Alta potência 850W. Ideal para concreto e alvenaria.</p>
-                                
-                                <div class="preco">R$ 45,00 <span>/dia</span></div>
-
-                                <button class="btn btn-custom w-100 mt-3" onclick="mostrarPagina('detalhes', 1)">Ver Detalhes</button>
-                            </div>
-                        </div>
+                <div class="row g-4" id="produtos-destaque">
                     </div>
-
-                    <div class="col-12 col-md-6 col-lg-4">
-                        <div class="card h-100 card-produto">
-                            <img src="https://lojawap.vtexassets.com/arquivos/ids/176102/parafusadeira-e-furadeira-de-impacto--wap-k21-id02_03.jpg?v=638793658462170000"
-                            class="card-img-top"
-                            alt="Parafusadeira Profissional amarela">
-
-                            <span class="badge-disponivel">✓ Disponivel</span>
-
-                            <div class="card-body">
-                                <h5 class="card-title">Parafusadeira de Impacto</h5>
-                                <p class="card-text">Bateria 20V, 2 baterias incluídas. Maleta completa.</p>
-                                
-                                <div class="preco">R$ 40,00 <span>/dia</span></div>
-
-                                <button class="btn btn-custom w-100 mt-3" onclick="mostrarPagina('detalhes', 1)">Ver Detalhes</button>
-                            </div>
-                        </div>
-                    </div>
-
-                    <div class="col-12 col-md-6 col-lg-4">
-                        <div class="card h-100 card-produto">
-                            <img src="https://img.lojadomecanico.com.br/IMAGENS/21/224/104991/1728312709281.JPG"
-                            class="card-img-top"
-                            alt="Serra Mármore Bosch">
-
-                            <span class="badge-alugado">✕ Alugado</span>
-
-                            <div class="card-body">
-                                <h5 class="card-title">Serra Mármore Bosch</h5>
-                                <p class="card-text">1400W, disco 110mm. Para cortes precisos.</p>
-                                
-                                <div class="preco">R$ 50,00 <span>/dia</span></div>
-
-                                <button class="btn btn-custom w-100 mt-3" disabled>Indisponivel</button>
-                            </div>
-                        </div>
-                    </div>
-                    
-                </div>
+                
             </div>
         </section>
 
         <section id="pagina-catalogo" class="pagina">
             <div class="container py-5">
+                
                 <h2 class="mb-4 fw-bold">Catálogo Completo</h2>
 
                 <div class="row mb-4">
-                    <div class="col-12 col-md-6 col-lg-4 mb-3">
+                    <div class="col-12 col-md-4 mb-3">
                         <label for="filtro-categoria" class="form-label fw-bold">Categoria:</label>
                         <select id="filtro-categoria" class="form-select form-select-lg">
                             <option value="">Todas as categorias</option>
@@ -177,62 +143,256 @@
                             <option value="parafusadeira">Parafusadeiras</option>
                         </select>
                     </div>
-
-                    <div class="col-12 col-md-6 col-lg-4 mb-3">
+                    <div class="col-12 col-md-4 mb-3">
                         <label for="filtro-disponibilidade" class="form-label fw-bold">Disponibilidade:</label>
                         <select id="filtro-disponibilidade" class="form-select form-select-lg">
                             <option value="">Todas</option>
-                            <option value="disponivel">Disponivel</option>
+                            <option value="disponivel">Disponível</option>
                             <option value="alugado">Alugado</option>
+                        </select>
+                    </div>
+                    <div class="col-12 col-md-4 mb-3">
+                        <label for="filtro-ordenacao" class="form-label fw-bold">Ordenar por:</label>
+                        <select id="filtro-ordenacao" class="form-select form-select-lg">
+                            <option value="nome">Nome A-Z</option>
+                            <option value="preco-menor">Menor Preço</option>
+                            <option value="preco-maior">Maior Preço</option>
                         </select>
                     </div>
                 </div>
                 
                 <div class="row g-4" id="lista-produtos"></div>
+                
             </div>
         </section>
 
         <section id="pagina-detalhes" class="pagina">
             <div class="container py-5">
-                <button class="btn btn-outline-secondary mb-4" onclick="mostrarPagina('catalogo')">
-                    ← Voltar ao Catálogo
+                
+                <button class="btn btn-outline-secondary mb-4" onclick="voltarPagina()">
+                    ← Voltar
                 </button>
 
                 <div class="row">
                     <div class="col-12 col-lg-6 mb-4">
                         <img id="detalhe-imagem" src="" alt="" class="img-fluid rounded shadow">
-                    </div>
+                        
+                        </div>
+
                     <div class="col-12 col-lg-6">
-                    <span id="detalhe-badge" class="badge-disponivel mb-3">✓ Disponível</span>
-                    <h2 id="detalhe-titulo" class="preco-grande mb-4"></h2>
-                    <div id="detalhe-preco" class="preco-grande mb-4"></div>
-                    <p id="detalhe-descricao" class="mb-4"></p>
+                        <span id="detalhe-badge" class="badge-disponivel mb-3">✓ Disponível</span>
+                        <h2 id="detalhe-titulo" class="mb-3 fw-bold"></h2>
+                        <div id="detalhe-preco" class="preco-grande mb-4"></div>
+                        <p id="detalhe-descricao" class="mb-4"></p>
 
-                    <h4 class="fw-bold mb-3">Especificações Técnicas:</h4>
-                    <ul id="detalhe-specs" class="list-unstyled specs-list mb-4"></ul>
+                        <div class="periodo-aluguel mb-4">
+                            <h4 class="fw-bold mb-3">Selecione o Período:</h4>
+                            <div class="row g-3">
+                                <div class="col-md-6">
+                                    <label for="data-inicio" class="form-label fw-bold">Data de Retirada:</label>
+                                    <input type="date" class="form-control form-control-lg" id="data-inicio">
+                                </div>
+                                <div class="col-md-6">
+                                    <label for="data-fim" class="form-label fw-bold">Data de Devolução:</label>
+                                    <input type="date" class="form-control form-control-lg" id="data-fim">
+                                </div>
+                            </div>
+                            <div class="calculo-periodo mt-3 p-3 bg-light rounded">
+                                <p class="mb-1">Período: <strong id="total-dias">-</strong></p>
+                                <p class="mb-0 text-primary fs-4">
+                                    <strong>Total: <span id="valor-total">R$ 0,00</span></strong>
+                                </p>
+                            </div>
+                        </div>
 
-                    <button id="detalhe-btn-alugar" class="btn btn-custom btn-lg w-100 mb-3">
-                        Alugar Agora
+                        <h4 class="fw-bold mb-3">Especificações Técnicas:</h4>
+                        <ul id="detalhe-specs" class="list-unstyled specs-list mb-4"></ul>
+
+                        <div class="d-grid gap-2">
+                            <button id="detalhe-btn-carrinho" class="btn btn-custom btn-lg">
+                                🛒 Adicionar ao Carrinho
+                            </button>
+                        </div>
+                        
+                        <div class="mt-4">
+                            <p class="text-muted">
+                                <small>💡 Clientes que alugaram este produto também se interessaram por brocas e EPIs</small>
+                            </p>
+                        </div>
+                    </div>
+                </div>
+
+                </div>
+        </section>
+
+        <section id="pagina-carrinho" class="pagina">
+            <div class="container py-5">
+                
+                <h2 class="mb-4 fw-bold">🛒 Meu Carrinho</h2>
+
+                <div id="carrinho-vazio" class="text-center py-5">
+                    <div class="mb-4" style="font-size: 80px;">🛒</div>
+                    <h3>Seu carrinho está vazio</h3>
+                    <p class="text-muted">Adicione produtos para começar seu aluguel</p>
+                    <button class="btn btn-custom btn-lg mt-3" onclick="mostrarPagina('catalogo')">
+                        Ir para o Catálogo
                     </button>
+                </div>
 
-                    <a href="https://wa.me/5515999999999?text=Olá!%20Gostaria%20de%20alugar" 
-                        class="btn btn-success btn-lg w-100" 
-                        target="_blank">
-                        💬 Falar no WhatsApp
-                    </a>
+                <div id="carrinho-conteudo" style="display: none;">
+                    <div class="row">
+                        <div class="col-12 col-lg-8">
+                            <div id="carrinho-itens"></div>
+                        </div>
+
+                        <div class="col-12 col-lg-4">
+                            <div class="card-resumo sticky-top">
+                                <h4 class="fw-bold mb-3">Resumo do Pedido</h4>
+                                
+                                <div class="resumo-linha">
+                                    <span>Subtotal:</span>
+                                    <span id="resumo-subtotal">R$ 0,00</span>
+                                </div>
+                                
+                                <div class="resumo-linha">
+                                    <span>Caução estimada:</span>
+                                    <span id="resumo-caucao">R$ 0,00</span>
+                                </div>
+                                
+                                <hr>
+                                
+                                <div class="resumo-linha resumo-total">
+                                    <span><strong>Total:</strong></span>
+                                    <span><strong id="resumo-total">R$ 0,00</strong></span>
+                                </div>
+                                
+                                <button class="btn btn-custom btn-lg w-100 mt-3" onclick="mostrarPagina('checkout')">
+                                    Finalizar Pedido
+                                </button>
+                                
+                                <button class="btn btn-outline-secondary w-100 mt-2" onclick="mostrarPagina('catalogo')">
+                                    Continuar Comprando
+                                </button>
+                            </div>
+                        </div>
                     </div>
                 </div>
                 
-
             </div>
         </section>
 
+        <section id="pagina-checkout" class="pagina">
+            <div class="container py-5">
+                
+                <h2 class="mb-4 fw-bold">Finalizar Pedido</h2>
+
+                <div class="row">
+                    <div class="col-12 col-lg-7">
+                        <form id="form-checkout">
+                            
+                            <div class="card p-4 mb-4">
+                                <h4 class="fw-bold mb-3">📋 Dados Pessoais</h4>
+                                
+                                <div class="mb-3">
+                                    <label for="checkout-nome" class="form-label fw-bold">Nome Completo *</label>
+                                    <input type="text" class="form-control form-control-lg" 
+                                           id="checkout-nome" required>
+                                </div>
+                                
+                                <div class="row">
+                                    <div class="col-md-6 mb-3">
+                                        <label for="checkout-cpf" class="form-label fw-bold">CPF *</label>
+                                        <input type="text" class="form-control form-control-lg" 
+                                               id="checkout-cpf" placeholder="000.000.000-00" required>
+                                    </div>
+                                    <div class="col-md-6 mb-3">
+                                        <label for="checkout-telefone" class="form-label fw-bold">Telefone *</label>
+                                        <input type="tel" class="form-control form-control-lg" 
+                                               id="checkout-telefone" placeholder="(15) 99999-9999" required>
+                                    </div>
+                                </div>
+                                
+                                <div class="mb-3">
+                                    <label for="checkout-email" class="form-label fw-bold">E-mail *</label>
+                                    <input type="email" class="form-control form-control-lg" 
+                                           id="checkout-email" required>
+                                </div>
+                            </div>
+
+                            <div class="card p-4 mb-4">
+                                <h4 class="fw-bold mb-3">🚗 Forma de Retirada</h4>
+                                
+                                <div class="form-check mb-3">
+                                    <input class="form-check-input" type="radio" name="retirada" 
+                                           id="retirada-loja" value="loja" checked>
+                                    <label class="form-check-label" for="retirada-loja">
+                                        <strong>Retirar na loja</strong> (Gratuito)
+                                        <br><small class="text-muted">Rua das Ferramentas, 123 - Bertioga/SP</small>
+                                    </label>
+                                </div>
+                                
+                                <div class="form-check">
+                                    <input class="form-check-input" type="radio" name="retirada" 
+                                           id="retirada-entrega" value="entrega">
+                                    <label class="form-check-label" for="retirada-entrega">
+                                        <strong>Entrega no endereço</strong> (Consultar taxa)
+                                        <br><small class="text-muted">Entregas apenas em Bertioga e região</small>
+                                    </label>
+                                </div>
+                                
+                                <div id="endereco-entrega" style="display: none;" class="mt-3">
+                                    <input type="text" class="form-control form-control-lg mb-2" 
+                                           placeholder="CEP">
+                                    <input type="text" class="form-control form-control-lg mb-2" 
+                                           placeholder="Endereço completo">
+                                </div>
+                            </div>
+
+                            <div class="form-check mb-4">
+                                <input class="form-check-input" type="checkbox" id="aceitar-termos" required>
+                                <label class="form-check-label" for="aceitar-termos">
+                                    Li e aceito os <a href="#" onclick="mostrarPagina('como-funciona')">termos de aluguel</a> *
+                                </label>
+                            </div>
+
+                            <button type="submit" class="btn btn-custom btn-lg w-100">
+                                ✓ Confirmar Pedido
+                            </button>
+                        </form>
+                    </div>
+
+                    <div class="col-12 col-lg-5">
+                        <div class="card-resumo sticky-top">
+                            <h4 class="fw-bold mb-3">Resumo do Pedido</h4>
+                            <div id="checkout-resumo-itens" class="mb-3"></div>
+                            
+                            <hr>
+                            
+                            <div class="resumo-linha">
+                                <span>Subtotal:</span>
+                                <span id="checkout-subtotal">R$ 0,00</span>
+                            </div>
+                            <div class="resumo-linha">
+                                <span>Caução:</span>
+                                <span id="checkout-caucao">R$ 0,00</span>
+                            </div>
+                            <div class="resumo-linha resumo-total">
+                                <span><strong>Total:</strong></span>
+                                <span><strong id="checkout-total">R$ 0,00</strong></span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                
+            </div>
+        </section>
+        
         <section id="pagina-como-funciona" class="pagina">
             <div class="container py-5">
+                
                 <h2 class="text-center mb-5 fw-bold">Como Funciona o Aluguel</h2>
             
-                <div class="row g-4">
-
+                <div class="row g-4 mb-5">
                     <div class="col-12 col-md-6 col-lg-3">
                         <div class="card-passo">
                             <div class="passo-numero">1</div>
@@ -240,43 +400,40 @@
                             <p>Navegue pelo catálogo e escolha a ferramenta ideal para seu projeto</p>
                         </div>
                     </div>
-
                     <div class="col-12 col-md-6 col-lg-3">
                         <div class="card-passo">
                             <div class="passo-numero">2</div>
-                            <h4>Entre em contato</h4>
-                            <p>Fale conosco por WhatsApp ou telefone para reservar</p>
+                            <h4>Selecione o Período</h4>
+                            <p>Escolha as datas de retirada e devolução</p>
                         </div>
                     </div>
-                    
                     <div class="col-12 col-md-6 col-lg-3">
                         <div class="card-passo">
                             <div class="passo-numero">3</div>
-                            <h4>Retire ou receba</h4>
-                            <p>Retire na loja ou receba em casa (consulte disponibilidade)</p>
+                            <h4>Finalize o Pedido</h4>
+                            <p>Preencha seus dados e confirme</p>
                         </div>
                     </div>
-
                     <div class="col-12 col-md-6 col-lg-3">
                         <div class="card-passo">
                             <div class="passo-numero">4</div>
-                            <h4>Devolva</h4>
-                            <p>Após o uso, devolva a ferramenta limpa e em bom estado</p>
+                            <h4>Retire e Devolva</h4>
+                            <p>Retire na data marcada e devolva limpa</p>
                         </div>
                     </div>
-
                 </div>
 
                 <div class="mt-5">
                     <h3 class="fw-bold mb-3">Informações Importantes:</h3>
                     <div class="card p-4">
                         <ul class="info-list">
-                            <li><strong>Documento necessário:</strong>RG, CPF e comprovante de residência</li>
-                            <li><strong>Caução:</strong>Valor varia conforme a ferramenta</li>
-                            <li><strong>Horário de funcionamento:</strong>Segunda a Sexta: 8h às 18h | Sábado: 8h às 12h</li>
-                            <li><strong>Prazo mínimo:</strong>1 dia (diária completa)</li>
-                            <li><strong>Atraso:</strong>Cobrada diária adicional</li>
-                            <li><strong>Manutenção:</strong>Todas as ferramentas são revisadas antes de cada locação</li>
+                            <li><strong>Documento necessário:</strong> RG, CPF e comprovante de residência</li>
+                            <li><strong>Caução:</strong> Valor varia conforme a ferramenta (50-100% do valor)</li>
+                            <li><strong>Horário de funcionamento:</strong> Segunda a Sexta: 8h às 18h | Sábado: 8h às 12h</li>
+                            <li><strong>Prazo mínimo:</strong> 1 dia (diária completa)</li>
+                            <li><strong>Atraso:</strong> Cobrada diária adicional de 150% do valor</li>
+                            <li><strong>Manutenção:</strong> Todas as ferramentas são revisadas antes de cada locação</li>
+                            <li><strong>Danos:</strong> Cliente é responsável por danos causados durante o período de aluguel</li>
                         </ul>
                     </div>
                 </div>
@@ -284,16 +441,13 @@
             </div>
         </section>
 
-
         <section id="pagina-contato" class="pagina">
             <div class="container py-5">
-
+                
                 <h2 class="text-center mb-5 fw-bold">Entre em Contato</h2>
 
                 <div class="row g-4">
-
                     <div class="col-12 col-lg-6">
-
                         <div class="card-contato mb-4">
                             <div class="icone-contato">💬</div>
                             <h4>WhatsApp</h4>
@@ -307,7 +461,7 @@
                             <div class="icone-contato">📞</div>
                             <h4>Telefone</h4>
                             <p class="mb-3">(15) 3333-3333</p>
-                            <a href="tel:+551533333333" class="btn btn-custom w-100" >
+                            <a href="tel:+551533333333" class="btn btn-custom w-100">
                                 Ligar Agora
                             </a>
                         </div>
@@ -315,19 +469,18 @@
                         <div class="card-contato mb-4">
                             <div class="icone-contato">📍</div>
                             <h4>Endereço</h4>
-                            <p>Rua das Ferramentas <br>
-                            Centro - Bertioga/SP <br>
-                            CEP: 180000-000</p>    
+                            <p>Rua das Ferramentas, 123<br>
+                            Centro - Bertioga/SP<br>
+                            CEP: 18000-000</p>
                         </div>
 
                         <div class="card-contato">
                             <div class="icone-contato">🕐</div>
-                            <h4>Horario de Funcionamento</h4>
-                            <p><strong>Segunda a Sexta:</strong> 8h às 18h
-                            <strong>Sábado:</strong> 8h às 12h
-                            <strong>Domingo:</strong>Fechado</p>
+                            <h4>Horário de Funcionamento</h4>
+                            <p><strong>Segunda a Sexta:</strong> 8h às 18h<br>
+                            <strong>Sábado:</strong> 8h às 12h<br>
+                            <strong>Domingo:</strong> Fechado</p>
                         </div>
-
                     </div>
 
                     <div class="col-12 col-lg-6">
@@ -351,7 +504,7 @@
                                 </div>
 
                                 <div class="mb-3">
-                                    <label for="mensagem" class="form-label fw-bold">Mensagem::</label>
+                                    <label for="mensagem" class="form-label fw-bold">Mensagem:</label>
                                     <textarea class="form-control form-control-lg" id="mensagem" rows="5" required></textarea>
                                 </div>
 
@@ -359,20 +512,46 @@
                                     Enviar Mensagem
                                 </button>
                             </form>
-
                         </div>
                     </div>
-
                 </div>
             </div>
         </section>
+
+        <section id="pagina-confirmacao" class="pagina">
+            <div class="container py-5">
+                <div class="text-center">
+                    <div class="mb-4" style="font-size: 100px;">✅</div>
+                    <h2 class="fw-bold mb-3">Pedido Confirmado!</h2>
+                    <p class="lead mb-4">Seu pedido foi recebido com sucesso!</p>
+                    
+                    <div class="card p-4 mb-4 text-start" style="max-width: 600px; margin: 0 auto;">
+                        <h4 class="fw-bold mb-3">Próximos Passos:</h4>
+                        <ol class="passos-confirmacao">
+                            <li>Você receberá uma confirmação por WhatsApp/E-mail em até 30 minutos</li>
+                            <li>Separe os documentos necessários (RG, CPF, comprovante)</li>
+                            <li>Compareça na data de retirada com os documentos e o valor da caução</li>
+                            <li>Devolva a ferramenta limpa na data combinada</li>
+                        </ol>
+                    </div>
+
+                    <div class="d-flex gap-2 justify-content-center flex-wrap">
+                        <button class="btn btn-custom btn-lg" onclick="mostrarPagina('home')">
+                            Voltar ao Início
+                        </button>
+                        <a href="https://wa.me/5515999999999" class="btn btn-success btn-lg" target="_blank">
+                            💬 Falar no WhatsApp
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </section>
+
     </main>
 
     <footer class="footer">
         <div class="container py-4">
             <div class="row">
-
-
                 <div class="col-12 col-md-4 mb-3">
                     <h5 class="fw-bold mb-3">FerramentaFácil</h5>
                     <p>Aluguel de ferramentas profissionais com qualidade e segurança.</p>
@@ -381,7 +560,7 @@
                 <div class="col-12 col-md-4 mb-3">
                     <h5 class="fw-bold mb-3">Links Rápidos</h5>
                     <ul class="list-unstyled">
-                        <li><a href="#" onclick="mostrarPagina('home')">Inicio</a></li>
+                        <li><a href="#" onclick="mostrarPagina('home')">Início</a></li>
                         <li><a href="#" onclick="mostrarPagina('catalogo')">Catálogo</a></li>
                         <li><a href="#" onclick="mostrarPagina('como-funciona')">Como Funciona</a></li>
                         <li><a href="#" onclick="mostrarPagina('contato')">Contato</a></li>
@@ -392,20 +571,17 @@
                     <h5 class="fw-bold mb-3">Contato</h5>
                     <p>📞 (15) 99999-9999<br>
                         📧 contato@ferramentafacil.com.br<br>
-                        📍 Sorocaba - SP</p>
+                        📍 Bertioga - SP</p>
                 </div>
             </div>
 
             <div class="text-center pt-3 border-top">
-                <p class="m-0"> &copy; 2025 FerramentaFácil. Todos os direitos reservados.</p>
+                <p class="m-0">&copy; 2025 FerramentaFácil. Todos os direitos reservados.</p>
             </div>
         </div>
     </footer>
 
-
-    
-
-<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>   
-<script src="script.js"></script> 
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>   
+    <script src="script.js"></script> 
 </body>
 </html>
