@@ -47,6 +47,11 @@ body {
     box-shadow: 0 2px 8px rgba(0, 0, 0, 0.3);
 }
 
+.menu-left {
+    display: flex;
+    align-items: center;
+}
+
 .marca {
     font-size: 24px;
     font-weight: 700;
@@ -702,6 +707,10 @@ body {
     .item-carrinho-imagem {
         width: 100%;
         height: 200px;
+    }
+
+    .header .container-fluid {
+        padding-bottom: 10px;
     }
 }
 

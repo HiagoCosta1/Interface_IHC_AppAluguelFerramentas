@@ -187,29 +187,7 @@ function renderizarDestaque() {
     const colDiv = document.createElement('div');
     colDiv.className = 'col-12 col-md-6 col-lg-4';
 
-    colDiv.innerHTML = `
-      <div class="card h-100 card-produto">
-        <img src="${produto.imagem}" 
-             class="card-img-top" 
-             alt="${produto.nome}">
-        
-        ${produto.disponivel ?
-        '<span class="badge-disponivel">✓ Disponível</span>' :
-        '<span class="badge-alugado">✕ Alugado</span>'}
-        
-        <div class="card-body">
-          <h5 class="card-title">${produto.nome}</h5>
-          <p class="card-text">${produto.descricao.substring(0, 80)}...</p>
-          <div class="preco">R$ ${produto.preco.toFixed(2)}<span>/dia</span></div>
-          
-          <button class="btn btn-custom w-100 mt-3" 
-                  onclick="mostrarPagina('detalhes', ${produto.id})"
-                  ${!produto.disponivel ? 'disabled' : ''}>
-            ${produto.disponivel ? 'Ver Detalhes' : 'Indisponível'}
-          </button>
-        </div>
-      </div>
-    `;
+    colDiv.innerHTML = `<div class="card h-100 card-produto"><img src="${produto.imagem}" class="card-img-top" alt="${produto.nome}">${produto.disponivel ? '<span class="badge-disponivel">✓ Disponível</span>' : '<span class="badge-alugado">✕ Alugado</span>'}<div class="card-body"><h5 class="card-title">${produto.nome}</h5><p class="card-text">${produto.descricao.substring(0, 80)}...</p><div class="preco">R$ ${produto.preco.toFixed(2)}<span>/dia</span></div><button class="btn btn-custom w-100 mt-3" onclick="mostrarPagina('detalhes', ${produto.id})" ${!produto.disponivel ? 'disabled' : ''}>  ${produto.disponivel ? 'Ver Detalhes' : 'Indisponível'}</button></div></div>`;
 
     container.appendChild(colDiv);
   });
@@ -254,29 +232,7 @@ function renderizarProdutos() {
     const colDiv = document.createElement('div');
     colDiv.className = 'col-12 col-md-6 col-lg-4';
 
-    colDiv.innerHTML = `
-      <div class="card h-100 card-produto">
-        <img src="${produto.imagem}" 
-             class="card-img-top" 
-             alt="${produto.nome}">
-        
-        ${produto.disponivel ?
-        '<span class="badge-disponivel">✓ Disponível</span>' :
-        '<span class="badge-alugado">✕ Alugado</span>'}
-        
-        <div class="card-body">
-          <h5 class="card-title">${produto.nome}</h5>
-          <p class="card-text">${produto.descricao.substring(0, 80)}...</p>
-          <div class="preco">R$ ${produto.preco.toFixed(2)}<span>/dia</span></div>
-          
-          <button class="btn btn-custom w-100 mt-3" 
-                  onclick="mostrarPagina('detalhes', ${produto.id})"
-                  ${!produto.disponivel ? 'disabled' : ''}>
-            ${produto.disponivel ? 'Ver Detalhes' : 'Indisponível'}
-          </button>
-        </div>
-      </div>
-    `;
+    colDiv.innerHTML = `<div class="card h-100 card-produto"><img src="${produto.imagem}" class="card-img-top" alt="${produto.nome}">${produto.disponivel ? '<span class="badge-disponivel">✓ Disponível</span>' : '<span class="badge-alugado">✕ Alugado</span>'}<div class="card-body"> <h5 class="card-title">${produto.nome}</h5> <p class="card-text">${produto.descricao.substring(0, 80)}...</p> <div class="preco">R$ ${produto.preco.toFixed(2)}<span>/dia</span></div><button class="btn btn-custom w-100 mt-3" onclick="mostrarPagina('detalhes', ${produto.id})" ${!produto.disponivel ? 'disabled' : ''}> ${produto.disponivel ? 'Ver Detalhes' : 'Indisponível'} </button> </div> </div>`;
 
     container.appendChild(colDiv);
   });
@@ -457,19 +413,7 @@ function renderizarCarrinho() {
     const itemDiv = document.createElement('div');
     itemDiv.className = 'item-carrinho';
 
-    itemDiv.innerHTML = `
-      <img src="${item.produto.imagem}" alt="${item.produto.nome}" class="item-carrinho-imagem">
-      <div class="item-carrinho-info">
-        <div class="item-carrinho-titulo">${item.produto.nome}</div>
-        <div class="item-carrinho-periodo">
-          📅 ${formatarData(item.dataInicio)} até ${formatarData(item.dataFim)} (${item.dias} ${item.dias === 1 ? 'dia' : 'dias'})
-        </div>
-        <div class="item-carrinho-preco">R$ ${item.total.toFixed(2)}</div>
-      </div>
-      <button class="btn-remover-item" onclick="removerDoCarrinho(${index})">
-        🗑️ Remover
-      </button>
-    `;
+    itemDiv.innerHTML = `<img src="${item.produto.imagem}" alt="${item.produto.nome}" class="item-carrinho-imagem"><div class="item-carrinho-info"><div class="item-carrinho-titulo">${item.produto.nome}</div><div class="item-carrinho-periodo">📅 ${formatarData(item.dataInicio)} até ${formatarData(item.dataFim)} (${item.dias} ${item.dias === 1 ? 'dia' : 'dias'})</div><div class="item-carrinho-preco">R$ ${item.total.toFixed(2)}</div></div><button class="btn-remover-item" onclick="removerDoCarrinho(${index})">🗑️ Remover</button>`;
 
     carrinhoItens.appendChild(itemDiv);
   });
@@ -913,3 +857,5 @@ function verificarProdutosExpirados() {
   atualizarBadgeCarrinho();
   salvarCarrinho();
 }
+
+renderizarDestaque();
