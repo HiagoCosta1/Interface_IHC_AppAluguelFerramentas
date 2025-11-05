@@ -866,7 +866,7 @@ document.head.appendChild(style);
 
 const abrirMenuOriginal = abrirMenu;
 abrirMenu = function() {
-Ai
+
   abrirMenuOriginal();
   document.body.style.overflow = 'hidden';
 };
