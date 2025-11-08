@@ -859,3 +859,4 @@ function verificarProdutosExpirados() {
 }
 
 renderizarDestaque();
+configurarBusca();
